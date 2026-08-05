@@ -4,82 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creator Command Center designed by Rochelle Mickels">
+  <meta name="theme-color" content="#8f5f73">
   <title>Creator Command Center</title>
   <style>
-    :root {
-      --bg: #f7f4ef;
-      --card: #ffffff;
-      --ink: #202124;
-      --muted: #6b6f76;
-      --accent: #8f5f73;
-      --accent-soft: #eadde3;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: linear-gradient(135deg, #f7f4ef, #eee5e8);
-    }
-    main {
-      width: min(760px, 100%);
-      padding: 54px 34px;
-      text-align: center;
-      background: var(--card);
-      border-radius: 24px;
-      box-shadow: 0 18px 50px rgba(32, 33, 36, 0.12);
-    }
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 18px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      font-size: .78rem;
-    }
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2.2rem, 7vw, 4.5rem);
-      line-height: 1;
-    }
-    p {
-      margin: 0 auto;
-      max-width: 590px;
-      color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.7;
-    }
-    .status {
-      margin-top: 30px;
-      padding: 16px;
-      border: 1px solid #e6dce1;
-      border-radius: 14px;
-      background: #fcfafb;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    footer {
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: .9rem;
-    }
+    :root{--bg:#f7f3f0;--surface:#fff;--surface-2:#fbf8f9;--ink:#2d2730;--muted:#786e78;--accent:#8f5f73;--accent-2:#c999a9;--accent-soft:#eadde3;--gold:#c6a46a;--line:#e7dde2;--success:#5f806b;--shadow:0 14px 36px rgba(77,54,67,.10);--radius:20px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(145deg,#f8f4f1 0%,#efe6ea 100%);color:var(--ink);min-height:100vh}
+    button,input,textarea,select{font:inherit} button{cursor:pointer}
+    .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    aside{position:sticky;top:0;height:100vh;padding:24px 18px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:22px}
+    .brand{padding:8px 10px 14px}.brand small{display:block;color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.69rem;margin-bottom:8px}.brand h1{font-size:1.55rem;line-height:1.05;margin:0}.brand p{margin:9px 0 0;color:var(--muted);font-size:.84rem;line-height:1.45}
+    nav{display:grid;gap:7px}.nav-btn{border:0;background:transparent;padding:12px 13px;border-radius:13px;text-align:left;color:var(--muted);font-weight:700;display:flex;gap:10px;align-items:center}.nav-btn:hover,.nav-btn.active{background:var(--accent-soft);color:var(--accent)}
+    .privacy-note{margin-top:auto;padding:14px;border:1px solid var(--line);border-radius:15px;background:var(--surface-2);font-size:.78rem;line-height:1.45;color:var(--muted)}
+    main{padding:30px;max-width:1500px;width:100%;margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:24px}.topbar h2{margin:0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.05}.topbar p{margin:8px 0 0;color:var(--muted)}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 14px;border-radius:12px;font-weight:800;box-shadow:0 5px 12px rgba(77,54,67,.06)}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn.ghost{box-shadow:none;background:transparent}.btn.danger{color:#9c3f50}
+    .section{display:none}.section.active{display:block}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{background:rgba(255,255,255,.92);border:1px solid rgba(231,221,226,.95);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-6{grid-column:span 6}.span-5{grid-column:span 5}.span-4{grid-column:span 4}
+    .card h3{margin:0 0 5px;font-size:1.06rem}.sub{color:var(--muted);font-size:.85rem;margin:0 0 16px}.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{padding:16px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line)}.stat strong{display:block;font-size:1.5rem;color:var(--accent)}.stat span{font-size:.78rem;color:var(--muted);font-weight:700}
+    .field{display:grid;gap:7px;margin-bottom:12px}.field label{font-size:.78rem;font-weight:800;color:var(--muted)}input,textarea,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 12px;color:var(--ink);outline:none}input:focus,textarea:focus,select:focus{border-color:var(--accent-2);box-shadow:0 0 0 3px rgba(201,153,169,.18)}textarea{min-height:110px;resize:vertical}
+    .big-three{display:grid;gap:10px}.task-line{display:flex;gap:10px;align-items:center;padding:11px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}.task-line input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}.task-line input[type=text]{border:0;background:transparent;padding:0}.task-line.done input[type=text]{text-decoration:line-through;color:var(--muted)}
+    .list{display:grid;gap:10px}.item{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2);display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.item h4{margin:0 0 4px;font-size:.95rem}.item p{margin:0;color:var(--muted);font-size:.82rem;white-space:pre-wrap}.badge{display:inline-flex;padding:5px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.7rem;font-weight:800;white-space:nowrap}.icon-btn{border:0;background:transparent;color:var(--muted);font-weight:900;padding:4px 7px}.empty{padding:20px;text-align:center;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:.85rem}
+    .form-row{display:grid;grid-template-columns:1.2fr .8fr .8fr auto;gap:9px;align-items:end}.idea-row{grid-template-columns:1.2fr .8fr 1fr auto}.money{font-variant-numeric:tabular-nums}.progress{height:10px;background:#eee6ea;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:inherit}
+    .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}.day{min-height:130px;padding:11px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2)}.day strong{display:block;font-size:.78rem;color:var(--accent);margin-bottom:8px}.day textarea{min-height:90px;border:0;padding:0;background:transparent;font-size:.8rem}
+    .modal{position:fixed;inset:0;background:rgba(36,28,34,.52);display:none;place-items:center;padding:20px;z-index:20}.modal.open{display:grid}.modal-panel{width:min(620px,100%);background:#fff;border-radius:24px;padding:26px;box-shadow:0 26px 80px rgba(35,24,31,.30)}.modal-panel h2{margin:0 0 8px}.modal-panel p{color:var(--muted);line-height:1.55}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+    .welcome{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:20px;background:linear-gradient(145deg,#f8f4f1,#e9dce2)}.welcome.hidden{display:none}.welcome-card{width:min(700px,100%);background:#fff;border-radius:28px;padding:34px;box-shadow:0 28px 90px rgba(63,40,52,.20)}.welcome .eyebrow{display:inline-flex;padding:7px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:900;font-size:.73rem;letter-spacing:.08em;text-transform:uppercase}.welcome h1{font-size:clamp(2.2rem,7vw,4.3rem);line-height:.98;margin:16px 0}.welcome p{color:var(--muted);line-height:1.65}.welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+    .mobile-menu{display:none}
+    @media(max-width:1000px){.app{grid-template-columns:1fr}aside{position:fixed;left:-280px;z-index:15;width:260px;transition:.25s}aside.open{left:0}.mobile-menu{display:inline-flex}.span-8,.span-7,.span-6,.span-5,.span-4{grid-column:span 12}.stat-row{grid-template-columns:repeat(2,1fr)}.week-grid{grid-template-columns:1fr 1fr}.form-row,.idea-row{grid-template-columns:1fr 1fr}.form-row .btn,.idea-row .btn{grid-column:span 2}}
+    @media(max-width:650px){main{padding:18px}.topbar{align-items:stretch;flex-direction:column}.welcome-grid,.week-grid,.stat-row,.form-row,.idea-row{grid-template-columns:1fr}.form-row .btn,.idea-row .btn{grid-column:auto}.card{padding:16px}.top-actions{width:100%}.top-actions .btn{flex:1}.welcome-card{padding:24px}.app{overflow-x:hidden}}
   </style>
 </head>
 <body>
-  <main>
-    <div class="eyebrow">Your ideas. Your content. Your next move.</div>
-    <h1>Creator Command Center</h1>
-    <p>A private, browser-based workspace for planning content, organizing projects, tracking progress, and building multiple income streams—designed by Rochelle Mickels.</p>
-    <div class="status">The full interactive dashboard is being built.</div>
-    <footer>Creator Command Center designed by Rochelle Mickels</footer>
-  </main>
+  <div id="welcome" class="welcome hidden">
+    <div class="welcome-card">
+      <span class="eyebrow">Your ideas. Your content. Your next move.</span>
+      <h1>Creator Command Center</h1>
+      <p>Create a calm, organized home base for your brand. Your information saves privately in this browser, so you can begin without an account or subscription.</p>
+      <div class="welcome-grid">
+        <div class="field"><label>Your name</label><input id="setupName" placeholder="Rochelle"></div>
+        <div class="field"><label>Brand name</label><input id="setupBrand" placeholder="Meant for More"></div>
+        <div class="field"><label>Primary platform</label><select id="setupPlatform"><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Substack</option><option>Pinterest</option><option>Facebook</option><option>Other</option></select></div>
+        <div class="field"><label>Main goal</label><input id="setupGoal" placeholder="Build consistent income"></div>
+      </div>
+      <button class="btn primary" id="startBtn">Create My Command Center</button>
+    </div>
+  </div>
+
+  <div class="app">
+    <aside id="sidebar">
+      <div class="brand"><small>Designed by Rochelle Mickels</small><h1>Creator Command Center</h1><p id="brandSubtitle">A calm place to build what is next.</p></div>
+      <nav>
+        <button class="nav-btn active" data-section="dashboard">⌂ Dashboard</button>
+        <button class="nav-btn" data-section="brain">✦ Brain Dump</button>
+        <button class="nav-btn" data-section="projects">◇ Future Projects</button>
+        <button class="nav-btn" data-section="content">▦ Content Planner</button>
+        <button class="nav-btn" data-section="revenue">$ Revenue Tracker</button>
+        <button class="nav-btn" data-section="review">✓ Weekly Review</button>
+      </nav>
+      <div class="privacy-note"><strong>Private by default</strong><br>Your entries are saved locally in this browser and are not uploaded to the public GitHub repository.</div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><button class="btn ghost mobile-menu" id="menuBtn">☰ Menu</button><h2 id="pageTitle">Good morning, Creator.</h2><p id="pageSubtitle">Focus on the few moves that make everything else easier.</p></div>
+        <div class="top-actions"><button class="btn" id="exportBtn">Backup</button><button class="btn" id="importBtn">Restore</button><button class="btn primary" id="profileBtn">Profile</button><input type="file" id="importFile" accept="application/json" hidden></div>
+      </header>
+
+      <section id="dashboard" class="section active">
+        <div class="grid">
+          <div class="card span-12"><div class="stat-row"><div class="stat"><strong id="statTasks">0/3</strong><span>Big 3 complete</span></div><div class="stat"><strong id="statIdeas">0</strong><span>Saved ideas</span></div><div class="stat"><strong id="statProjects">0</strong><span>Future projects</span></div><div class="stat"><strong id="statRevenue">$0</strong><span>Tracked revenue</span></div></div></div>
+          <div class="card span-5"><h3>Today’s Big 3</h3><p class="sub">Three meaningful priorities—not an overwhelming list.</p><div class="big-three" id="bigThree"></div></div>
+          <div class="card span-7"><h3>Morning Brain Dump</h3><p class="sub">Clear your mind before organizing the day.</p><textarea id="quickBrain" placeholder="What is on your mind this morning?"></textarea><button class="btn primary" id="saveBrainBtn">Save Brain Dump</button></div>
+          <div class="card span-6"><h3>Current Focus</h3><p class="sub">Keep your brand direction visible.</p><div class="field"><label>Main goal</label><input id="mainGoal" placeholder="What matters most right now?"></div><div class="field"><label>This week’s focus</label><textarea id="weekFocus" placeholder="What would make this week feel successful?"></textarea></div></div>
+          <div class="card span-6"><h3>Momentum</h3><p class="sub">Small progress compounds.</p><div class="progress"><span id="momentumBar" style="width:0%"></span></div><p id="momentumText" class="sub" style="margin-top:12px">Complete your Big 3 to build momentum.</p><div class="item"><div><h4>Next best move</h4><p id="nextMove">Choose your first priority for today.</p></div><span class="badge">Today</span></div></div>
+        </div>
+      </section>
+
+      <section id="brain" class="section"><div class="grid"><div class="card span-12"><h3>Brain Dump Archive</h3><p class="sub">Capture thoughts, worries, tasks, and ideas without needing to organize them first.</p><div class="field"><label>New entry</label><textarea id="brainEntry" placeholder="Write freely..."></textarea></div><button class="btn primary" id="addBrainBtn">Add Entry</button></div><div class="card span-12"><div id="brainList" class="list"></div></div></div></section>
+
+      <section id="projects" class="section"><div class="grid"><div class="card span-12"><h3>Future Projects</h3><p class="sub">Save ideas now so they stop competing for today’s attention.</p><div class="form-row"><div class="field"><label>Project</label><input id="projectTitle" placeholder="Example: Free creator starter guide"></div><div class="field"><label>Category</label><select id="projectCategory"><option>PDF or Content Idea</option><option>Brand Partnership</option><option>Course</option><option>Website</option><option>Income Stream</option><option>Other</option></select></div><div class="field"><label>Platform</label><select id="projectPlatform"><option>Substack</option><option>Instagram</option><option>TikTok</option><option>Pinterest</option><option>YouTube</option><option>Facebook</option><option>Multiple</option></select></div><button class="btn primary" id="addProjectBtn">Add</button></div></div><div class="card span-12"><div id="projectList" class="list"></div></div></div></section>
+
+      <section id="content" class="section"><div class="grid"><div class="card span-12"><h3>Content Idea Bank</h3><p class="sub">Capture the idea and choose where it belongs.</p><div class="form-row idea-row"><div class="field"><label>Content idea</label><input id="ideaTitle" placeholder="What do you want to create?"></div><div class="field"><label>Format</label><select id="ideaFormat"><option>Short Video</option><option>Carousel</option><option>Pin</option><option>Article</option><option>PDF</option><option>Email</option><option>Live</option></select></div><div class="field"><label>Platform</label><select id="ideaPlatform"><option>Instagram</option><option>TikTok</option><option>Pinterest</option><option>Substack</option><option>YouTube</option><option>Facebook</option><option>Multiple</option></select></div><button class="btn primary" id="addIdeaBtn">Save</button></div></div><div class="card span-5"><h3>Idea Bank</h3><div id="ideaList" class="list"></div></div><div class="card span-7"><h3>Weekly Content Calendar</h3><p class="sub">A flexible planning view—not another rigid schedule.</p><div id="weekGrid" class="week-grid"></div></div></div></section>
+
+      <section id="revenue" class="section"><div class="grid"><div class="card span-12"><h3>Revenue Tracker</h3><p class="sub">Track income streams without needing a complicated spreadsheet.</p><div class="form-row"><div class="field"><label>Source</label><input id="revenueSource" placeholder="Affiliate, UGC, brand deal..."></div><div class="field"><label>Amount</label><input id="revenueAmount" type="number" min="0" step="0.01" placeholder="0.00"></div><div class="field"><label>Date</label><input id="revenueDate" type="date"></div><button class="btn primary" id="addRevenueBtn">Add</button></div></div><div class="card span-4"><h3>Total Revenue</h3><p class="money" id="revenueTotal" style="font-size:2.3rem;font-weight:900;color:var(--accent);margin:12px 0">$0</p><p class="sub">Based on entries saved in this browser.</p></div><div class="card span-8"><h3>Income Entries</h3><div id="revenueList" class="list"></div></div></div></section>
+
+      <section id="review" class="section"><div class="grid"><div class="card span-6"><h3>Weekly Reflection</h3><p class="sub">Notice progress before planning more.</p><div class="field"><label>What worked?</label><textarea id="reviewWorked"></textarea></div><div class="field"><label>What felt difficult?</label><textarea id="reviewHard"></textarea></div><div class="field"><label>What will I do differently next week?</label><textarea id="reviewNext"></textarea></div><button class="btn primary" id="saveReviewBtn">Save Review</button></div><div class="card span-6"><h3>Wins & Evidence</h3><p class="sub">Record proof that you are moving forward.</p><div class="field"><label>This week’s wins</label><textarea id="reviewWins" placeholder="Small wins count."></textarea></div><div class="field"><label>One thing I am proud of</label><input id="reviewProud"></div><div class="item"><div><h4>Reminder</h4><p>You do not need to do everything at once. You only need to keep choosing the next right step.</p></div><span class="badge">Meant for More</span></div></div></div></section>
+    </main>
+  </div>
+
+  <div class="modal" id="profileModal"><div class="modal-panel"><h2>Personalize Your Command Center</h2><p>This allows each creator to use the same website while keeping a separate setup and data in their own browser.</p><div class="welcome-grid"><div class="field"><label>Your name</label><input id="profileName"></div><div class="field"><label>Brand name</label><input id="profileBrand"></div><div class="field"><label>Primary platform</label><input id="profilePlatform"></div><div class="field"><label>Main goal</label><input id="profileGoal"></div></div><div class="modal-actions"><button class="btn" id="closeProfileBtn">Cancel</button><button class="btn primary" id="saveProfileBtn">Save</button></div></div></div>
+
+  <script>
+    const STORAGE_KEY='creatorCommandCenter.v1';
+    const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    const defaults={profile:{name:'',brand:'',platform:'Instagram',goal:''},bigThree:[{text:'',done:false},{text:'',done:false},{text:'',done:false}],brain:[],projects:[],ideas:[],revenue:[],week:Object.fromEntries(days.map(d=>[d,''])),focus:{mainGoal:'',weekFocus:''},review:{worked:'',hard:'',next:'',wins:'',proud:''}};
+    let state=load();
+    function load(){try{return {...structuredClone(defaults),...JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}}catch{return structuredClone(defaults)}}
+    function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));renderStats()}
+    const $=id=>document.getElementById(id);
+    function esc(s=''){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+    function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(n||0)}
+    function init(){if(!state.profile.name)$('welcome').classList.remove('hidden');renderAll();bind();}
+    function bind(){
+      document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>showSection(b.dataset.section,b)));
+      $('menuBtn').onclick=()=>$('sidebar').classList.toggle('open');
+      $('startBtn').onclick=()=>{state.profile={name:$('setupName').value.trim()||'Creator',brand:$('setupBrand').value.trim()||'My Brand',platform:$('setupPlatform').value,goal:$('setupGoal').value.trim()};state.focus.mainGoal=state.profile.goal;save();$('welcome').classList.add('hidden');renderAll()};
+      $('profileBtn').onclick=openProfile;$('closeProfileBtn').onclick=()=>$('profileModal').classList.remove('open');$('saveProfileBtn').onclick=saveProfile;
+      $('quickBrain').oninput=e=>{state.quickBrain=e.target.value;save()};$('saveBrainBtn').onclick=()=>{const v=$('quickBrain').value.trim();if(v){state.brain.unshift({id:Date.now(),text:v,date:new Date().toLocaleString()});state.quickBrain='';save();renderBrain();$('quickBrain').value=''}};
+      $('addBrainBtn').onclick=()=>{const v=$('brainEntry').value.trim();if(v){state.brain.unshift({id:Date.now(),text:v,date:new Date().toLocaleString()});$('brainEntry').value='';save();renderBrain()}};
+      $('addProjectBtn').onclick=()=>{const title=$('projectTitle').value.trim();if(!title)return;state.projects.unshift({id:Date.now(),title,category:$('projectCategory').value,platform:$('projectPlatform').value});$('projectTitle').value='';save();renderProjects()};
+      $('addIdeaBtn').onclick=()=>{const title=$('ideaTitle').value.trim();if(!title)return;state.ideas.unshift({id:Date.now(),title,format:$('ideaFormat').value,platform:$('ideaPlatform').value});$('ideaTitle').value='';save();renderIdeas()};
+      $('addRevenueBtn').onclick=()=>{const source=$('revenueSource').value.trim(),amount=Number($('revenueAmount').value);if(!source||!amount)return;state.revenue.unshift({id:Date.now(),source,amount,date:$('revenueDate').value||new Date().toISOString().slice(0,10)});$('revenueSource').value='';$('revenueAmount').value='';save();renderRevenue()};
+      $('mainGoal').oninput=e=>{state.focus.mainGoal=e.target.value;save()};$('weekFocus').oninput=e=>{state.focus.weekFocus=e.target.value;save()};
+      $('saveReviewBtn').onclick=()=>{state.review={worked:$('reviewWorked').value,hard:$('reviewHard').value,next:$('reviewNext').value,wins:$('reviewWins').value,proud:$('reviewProud').value};save();alert('Weekly review saved in this browser.')};
+      $('exportBtn').onclick=exportData;$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=importData;
+    }
+    function showSection(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');$('sidebar').classList.remove('open');const titles={dashboard:['Dashboard','Focus on the few moves that make everything else easier.'],brain:['Brain Dump','A safe place to put everything competing for your attention.'],projects:['Future Projects','Protect today by parking tomorrow’s possibilities.'],content:['Content Planner','Turn ideas into a simple, visible plan.'],revenue:['Revenue Tracker','See which income streams are beginning to grow.'],review:['Weekly Review','Reflect, reset, and choose what comes next.']};$('pageTitle').textContent=titles[id][0];$('pageSubtitle').textContent=titles[id][1]}
+    function renderAll(){renderHeader();renderBigThree();renderBrain();renderProjects();renderIdeas();renderWeek();renderRevenue();renderReview();renderStats();$('quickBrain').value=state.quickBrain||'';$('mainGoal').value=state.focus?.mainGoal||'';$('weekFocus').value=state.focus?.weekFocus||''}
+    function renderHeader(){const n=state.profile.name||'Creator';$('pageTitle').textContent=`Good morning, ${n}.`;$('brandSubtitle').textContent=state.profile.brand?`${state.profile.brand} · ${state.profile.platform}`:'A calm place to build what is next.'}
+    function renderBigThree(){$('bigThree').innerHTML=state.bigThree.map((t,i)=>`<div class="task-line ${t.done?'done':''}"><input type="checkbox" ${t.done?'checked':''} data-check="${i}"><input type="text" value="${esc(t.text)}" placeholder="Priority ${i+1}" data-task="${i}"></div>`).join('');document.querySelectorAll('[data-task]').forEach(el=>el.oninput=e=>{state.bigThree[+e.target.dataset.task].text=e.target.value;save();renderStats()});document.querySelectorAll('[data-check]').forEach(el=>el.onchange=e=>{state.bigThree[+e.target.dataset.check].done=e.target.checked;save();renderBigThree();renderStats()})}
+    function renderBrain(){const box=$('brainList');box.innerHTML=state.brain.length?state.brain.map(x=>`<div class="item"><div><h4>${esc(x.date)}</h4><p>${esc(x.text)}</p></div><button class="icon-btn" onclick="removeItem('brain',${x.id})">×</button></div>`).join(''):'<div class="empty">No entries yet. Your first brain dump will appear here.</div>'}
+    function renderProjects(){const box=$('projectList');box.innerHTML=state.projects.length?state.projects.map(x=>`<div class="item"><div><h4>${esc(x.title)}</h4><p>${esc(x.category)}</p></div><div><span class="badge">${esc(x.platform)}</span><button class="icon-btn" onclick="removeItem('projects',${x.id})">×</button></div></div>`).join(''):'<div class="empty">Save future projects here without adding them to today’s workload.</div>'}
+    function renderIdeas(){const box=$('ideaList');box.innerHTML=state.ideas.length?state.ideas.map(x=>`<div class="item"><div><h4>${esc(x.title)}</h4><p>${esc(x.format)}</p></div><div><span class="badge">${esc(x.platform)}</span><button class="icon-btn" onclick="removeItem('ideas',${x.id})">×</button></div></div>`).join(''):'<div class="empty">Your content ideas will collect here.</div>'}
+    function renderWeek(){$('weekGrid').innerHTML=days.map(d=>`<div class="day"><strong>${d}</strong><textarea data-day="${d}" placeholder="Plan lightly...">${esc(state.week?.[d]||'')}</textarea></div>`).join('');document.querySelectorAll('[data-day]').forEach(el=>el.oninput=e=>{state.week[e.target.dataset.day]=e.target.value;save()})}
+    function renderRevenue(){const total=state.revenue.reduce((s,x)=>s+Number(x.amount),0);$('revenueTotal').textContent=money(total);$('revenueList').innerHTML=state.revenue.length?state.revenue.map(x=>`<div class="item"><div><h4>${esc(x.source)}</h4><p>${esc(x.date)}</p></div><div><strong class="money">${money(x.amount)}</strong><button class="icon-btn" onclick="removeItem('revenue',${x.id})">×</button></div></div>`).join(''):'<div class="empty">Revenue entries will appear here.</div>'}
+    function renderReview(){const r=state.review||{};$('reviewWorked').value=r.worked||'';$('reviewHard').value=r.hard||'';$('reviewNext').value=r.next||'';$('reviewWins').value=r.wins||'';$('reviewProud').value=r.proud||''}
+    function renderStats(){const done=state.bigThree.filter(x=>x.done).length,total=state.revenue.reduce((s,x)=>s+Number(x.amount),0);$('statTasks').textContent=`${done}/3`;$('statIdeas').textContent=state.ideas.length;$('statProjects').textContent=state.projects.length;$('statRevenue').textContent=money(total).replace('.00','');$('momentumBar').style.width=`${done/3*100}%`;$('momentumText').textContent=done===3?'You completed your Big 3. Protect that win.':`${done} of 3 priorities complete.`;const next=state.bigThree.find(x=>!x.done&&x.text.trim());$('nextMove').textContent=next?next.text:'Choose your first priority for today.'}
+    function openProfile(){$('profileName').value=state.profile.name||'';$('profileBrand').value=state.profile.brand||'';$('profilePlatform').value=state.profile.platform||'';$('profileGoal').value=state.profile.goal||'';$('profileModal').classList.add('open')}
+    function saveProfile(){state.profile={name:$('profileName').value.trim()||'Creator',brand:$('profileBrand').value.trim(),platform:$('profilePlatform').value.trim(),goal:$('profileGoal').value.trim()};state.focus.mainGoal=state.profile.goal||state.focus.mainGoal;save();renderAll();$('profileModal').classList.remove('open')}
+    function removeItem(key,id){state[key]=state[key].filter(x=>x.id!==id);save();({brain:renderBrain,projects:renderProjects,ideas:renderIdeas,revenue:renderRevenue}[key])()}
+    function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='creator-command-center-backup.json';a.click();URL.revokeObjectURL(a.href)}
+    function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{state={...structuredClone(defaults),...JSON.parse(r.result)};save();renderAll();alert('Backup restored successfully.')}catch{alert('That file could not be restored.')}};r.readAsText(f);e.target.value=''}
+    init();
+  </script>
 </body>
 </html>
