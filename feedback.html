@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8f5f73">
+  <title>Creator Command Center Feedback</title>
+  <style>
+    :root{--ink:#2d2730;--muted:#786e78;--accent:#8f5f73;--soft:#eadde3;--line:#e7dde2;--surface:#fff;--bg:#f7f3f0}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(145deg,#f8f4f1,#e9dce2);color:var(--ink);min-height:100vh;padding:24px}main{width:min(780px,100%);margin:auto;background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:26px;padding:clamp(22px,5vw,40px);box-shadow:0 24px 70px rgba(63,40,52,.16)}.eyebrow{display:inline-block;padding:7px 11px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}h1{font-size:clamp(2rem,7vw,3.8rem);line-height:1;margin:16px 0 10px}p{color:var(--muted);line-height:1.6}.field{display:grid;gap:7px;margin:18px 0}.field label{font-size:.82rem;font-weight:850}.choice{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.choice label{border:1px solid var(--line);border-radius:12px;padding:11px 7px;text-align:center;background:#fff;cursor:pointer}.choice input{display:block;margin:0 auto 6px;accent-color:var(--accent)}input[type=text],textarea,select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit;color:var(--ink)}textarea{min-height:110px;resize:vertical}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.btn{border:1px solid var(--line);background:#fff;padding:11px 15px;border-radius:12px;font-weight:850;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.note{padding:14px;border-radius:14px;background:#fbf8f9;border:1px solid var(--line);font-size:.82rem;color:var(--muted)}#saved{display:none;color:#557562;font-weight:800;margin-top:14px}@media(max-width:620px){.choice{grid-template-columns:1fr}.choice label{display:flex;gap:10px;text-align:left;align-items:center}.choice input{margin:0}.actions .btn{flex:1}}
+  </style>
+</head>
+<body>
+<main>
+  <span class="eyebrow">Simple tester check-in</span>
+  <h1>How did it feel to use?</h1>
+  <p>Your honest experience will help make the Creator Command Center easier for people who are not very comfortable with technology. There are no wrong answers.</p>
+
+  <form id="feedbackForm">
+    <div class="field"><label for="testerName">Your name</label><input id="testerName" type="text" placeholder="First name is enough"></div>
+    <div class="field"><label for="device">What did you use?</label><select id="device"><option>Phone</option><option>Tablet</option><option>Laptop or desktop</option></select></div>
+
+    <div class="field"><label>How easy was it to get started?</label><div class="choice">
+      <label><input type="radio" name="ease" value="1 - Very confusing">1<br>Very confusing</label>
+      <label><input type="radio" name="ease" value="2">2</label>
+      <label><input type="radio" name="ease" value="3">3</label>
+      <label><input type="radio" name="ease" value="4">4</label>
+      <label><input type="radio" name="ease" value="5 - Very easy">5<br>Very easy</label>
+    </div></div>
+
+    <div class="field"><label for="firstConfusing">What was the first thing that confused you?</label><textarea id="firstConfusing" placeholder="Tell us exactly what you expected to happen."></textarea></div>
+    <div class="field"><label for="favorite">What felt most useful?</label><textarea id="favorite" placeholder="A page, button, feature, or wording you liked."></textarea></div>
+    <div class="field"><label for="missing">What did you expect to find but could not?</label><textarea id="missing" placeholder="Anything missing or difficult to locate?"></textarea></div>
+    <div class="field"><label for="recommend">What one change would make this easier?</label><textarea id="recommend" placeholder="Your most important suggestion."></textarea></div>
+
+    <div class="note">This form saves only in this browser. Use “Download Feedback” to create a small file you can send to Rochelle. No account or email is required.</div>
+    <div class="actions"><button class="btn primary" type="button" id="downloadBtn">Download Feedback</button><button class="btn" type="button" id="saveBtn">Save for Later</button><a class="btn" href="./" style="text-decoration:none;color:inherit;text-align:center">Return to Dashboard</a></div>
+    <div id="saved">Saved on this device.</div>
+  </form>
+</main>
+<script>
+  const KEY='creatorCommandCenterFeedbackV1';
+  const ids=['testerName','device','firstConfusing','favorite','missing','recommend'];
+  function collect(){const out={submittedAt:new Date().toISOString()};ids.forEach(id=>out[id]=document.getElementById(id).value.trim());out.ease=document.querySelector('input[name=ease]:checked')?.value||'';return out}
+  function restore(){try{const data=JSON.parse(localStorage.getItem(KEY)||'null');if(!data)return;ids.forEach(id=>{if(data[id])document.getElementById(id).value=data[id]});if(data.ease){const r=[...document.querySelectorAll('input[name=ease]')].find(x=>x.value===data.ease);if(r)r.checked=true}}catch(e){}}
+  function save(){localStorage.setItem(KEY,JSON.stringify(collect()));const s=document.getElementById('saved');s.style.display='block';setTimeout(()=>s.style.display='none',2500)}
+  document.getElementById('saveBtn').addEventListener('click',save);
+  document.getElementById('downloadBtn').addEventListener('click',()=>{const data=collect();localStorage.setItem(KEY,JSON.stringify(data));const text=['CREATOR COMMAND CENTER TESTER FEEDBACK','',`Submitted: ${new Date(data.submittedAt).toLocaleString()}`,`Tester: ${data.testerName||'Not provided'}`,`Device: ${data.device}`,`Ease: ${data.ease||'Not answered'}`,'',`FIRST CONFUSING MOMENT\n${data.firstConfusing||'No answer'}`,'',`MOST USEFUL\n${data.favorite||'No answer'}`,'',`EXPECTED BUT COULD NOT FIND\n${data.missing||'No answer'}`,'',`ONE RECOMMENDED CHANGE\n${data.recommend||'No answer'}`].join('\n');const blob=new Blob([text],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`creator-command-center-feedback-${(data.testerName||'tester').replace(/[^a-z0-9]+/gi,'-').toLowerCase()}.txt`;a.click();URL.revokeObjectURL(a.href)});
+  restore();
+</script>
+</body>
+</html>
