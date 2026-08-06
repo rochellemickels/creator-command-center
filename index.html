@@ -63,6 +63,7 @@
     <button class="nav" data-page="brain">✦ Brain Dump</button>
     <button class="nav" data-page="projects">◇ Future Projects</button>
     <button class="nav" data-page="content">▦ Content Planner</button>
+    <button class="nav" data-page="education">▤ Education &amp; Courses</button>
     <button class="nav" data-page="revenue">$ Revenue</button>
     <button class="nav" data-page="review">✓ Weekly Review</button>
     <button class="nav" data-page="settings">⚙ Profile & Feedback</button>
@@ -97,6 +98,11 @@
 <section id="content" class="page"><div class="grid">
   <div class="card wide"><h3>Content Planner</h3><p class="sub">Turn ideas into publishable content.</p><div class="formrow"><div class="field"><label>Content idea</label><input id="cTitle" placeholder="Three free tools for new creators"></div><div class="field"><label>Platform</label><select id="cPlatform"><option>Instagram</option><option>TikTok</option><option>Pinterest</option><option>Substack</option><option>YouTube</option><option>Facebook</option></select></div><div class="field"><label>Format</label><select id="cFormat"><option>Short Video</option><option>Carousel</option><option>Pin</option><option>Article</option><option>PDF</option><option>Email</option></select></div><button class="btn primary" onclick="addContent()">Add</button></div><div class="field" style="max-width:260px"><label>Target publish date</label><input id="cDate" type="date"></div></div>
   <div class="card wide"><div id="contentList" class="list"></div></div>
+</div></section>
+
+<section id="education" class="page"><div class="grid">
+  <div class="card wide"><h3>Education &amp; Courses</h3><p class="sub">Keep your continuing education organized and always know what to do next.</p><div class="formrow"><div class="field"><label>Course or program</label><input id="eCourseTitle" placeholder="Example: AI for Content Creators"></div><div class="field"><label>Provider</label><input id="eCourseProvider" placeholder="Coursera, YouTube, workshop..."></div><div class="field"><label>Status</label><select id="eCourseStatus"><option>Want to Take</option><option>In Progress</option><option>Paused</option><option>Completed</option></select></div><button class="btn primary" onclick="addCourse()">Add Course</button></div><div class="two"><div class="field"><label>Due or target date</label><input id="eCourseDate" type="date"></div><div class="field"><label>Next action</label><input id="eCourseNext" placeholder="Watch module 2, finish quiz, download certificate..."></div></div></div>
+  <div class="card wide"><div id="courseList" class="list"></div></div>
 </div></section>
 
 <section id="revenue" class="page"><div class="grid">
