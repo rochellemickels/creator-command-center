@@ -1,0 +1,18 @@
+{
+  "name": "Creator Command Center",
+  "short_name": "Command Center",
+  "description": "A calm, private-by-default workspace for creators to plan their brand, content, projects, and income.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f2f0",
+  "theme_color": "#8f5f73",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
