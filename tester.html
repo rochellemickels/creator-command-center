@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#8f5f73">
+<title>Creator Command Center — Tester Experience</title>
+<style>
+:root{--ink:#2d2730;--muted:#786e78;--accent:#8f5f73;--soft:#eadde3;--line:#e7dde2;--paper:#fff;--bg:#f6f0f3;--ok:#5f806b;--shadow:0 18px 50px rgba(77,54,67,.12)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(145deg,#f8f4f1,#eadfe4);color:var(--ink);min-height:100vh}main{width:min(880px,calc(100% - 28px));margin:0 auto;padding:28px 0 70px}.hero,.card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.hero{padding:34px;margin-bottom:18px}.eyebrow{display:inline-flex;padding:7px 11px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:.72rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.hero h1{font-size:clamp(2.1rem,7vw,4rem);line-height:1;margin:16px 0 12px}.hero p,.hint{color:var(--muted);line-height:1.6}.card{padding:24px;margin:16px 0}.card h2{margin:0 0 6px}.step{font-size:.73rem;color:var(--accent);font-weight:900;text-transform:uppercase;letter-spacing:.1em}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px;margin-top:13px}.field label{font-size:.8rem;font-weight:800;color:var(--muted)}input,textarea,select{width:100%;padding:12px 13px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit}textarea{min-height:105px;resize:vertical}button,a.button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;padding:11px 15px;font:inherit;font-weight:850;text-decoration:none;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}.checklist{display:grid;gap:10px;margin-top:15px}.check{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:13px;border:1px solid var(--line);background:#fbf8f9}.check input{width:19px;height:19px;accent-color:var(--accent);margin-top:2px}.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.scale label{text-align:center;padding:10px 4px;border:1px solid var(--line);border-radius:11px;background:#fff;font-weight:800}.scale input{width:auto}.saved{display:none;margin-top:14px;padding:12px;border-radius:12px;background:#e7f0e9;color:#3f664c;font-weight:750}.saved.show{display:block}.privacy{font-size:.82rem;color:var(--muted);margin-top:20px}.footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:25px}@media(max-width:650px){.grid{grid-template-columns:1fr}.hero,.card{padding:20px}.scale{grid-template-columns:1fr}.scale label{text-align:left}.actions>*{width:100%}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<span class="eyebrow">Designed by Rochelle Mickels</span>
+<h1>Creator Command Center Test Drive</h1>
+<p>This guided page helps a new creator test the Command Center without needing technical experience. Your answers save only in this browser until you download or copy them.</p>
+<div class="actions"><a class="button primary" href="./">Open the Command Center</a><button class="secondary" id="clearAll">Start Fresh</button></div>
+</section>
+
+<section class="card">
+<div class="step">Step 1</div><h2>Meet the tester</h2><p class="hint">Use this to personalize the test and remember whose feedback this is.</p>
+<div class="grid"><div class="field"><label>Your name</label><input id="testerName" placeholder="First name"></div><div class="field"><label>Your brand or idea</label><input id="testerBrand" placeholder="Brand name, niche, or idea"></div><div class="field"><label>Main platform</label><select id="testerPlatform"><option value="">Choose one</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Pinterest</option><option>Substack</option><option>Facebook</option><option>Other</option></select></div><div class="field"><label>Comfort with technology</label><select id="techLevel"><option value="">Choose one</option><option>Not comfortable</option><option>A little comfortable</option><option>Comfortable</option><option>Very comfortable</option></select></div></div>
+</section>
+
+<section class="card">
+<div class="step">Step 2</div><h2>Try these five things</h2><p class="hint">There is no right way to do this. Notice where you hesitate or feel unsure.</p>
+<div class="checklist" id="tasks">
+<label class="check"><input type="checkbox" data-key="setup"><span><strong>Set up your creator profile.</strong><br><span class="hint">Enter your name, brand, platform, and main goal.</span></span></label>
+<label class="check"><input type="checkbox" data-key="big3"><span><strong>Add today’s Big 3.</strong><br><span class="hint">Choose three meaningful priorities.</span></span></label>
+<label class="check"><input type="checkbox" data-key="brain"><span><strong>Save a Morning Brain Dump.</strong><br><span class="hint">Write anything that is taking up mental space.</span></span></label>
+<label class="check"><input type="checkbox" data-key="project"><span><strong>Add one Future Project.</strong><br><span class="hint">Try a PDF, short video, partnership, course, or website idea.</span></span></label>
+<label class="check"><input type="checkbox" data-key="backup"><span><strong>Find the Backup button.</strong><br><span class="hint">You do not have to download the file unless you want to.</span></span></label>
+</div>
+</section>
+
+<section class="card">
+<div class="step">Step 3</div><h2>How easy did it feel?</h2><p class="hint">Rate the experience from 1 (confusing) to 5 (very easy).</p>
+<div class="scale" id="easeScale">
+<label><input type="radio" name="ease" value="1"> 1 — Confusing</label><label><input type="radio" name="ease" value="2"> 2</label><label><input type="radio" name="ease" value="3"> 3</label><label><input type="radio" name="ease" value="4"> 4</label><label><input type="radio" name="ease" value="5"> 5 — Very easy</label>
+</div>
+<div class="field"><label>What was easiest?</label><textarea id="easiest" placeholder="Tell us what felt natural or helpful."></textarea></div>
+<div class="field"><label>Where did you feel stuck or unsure?</label><textarea id="stuck" placeholder="Describe exactly what you expected to happen."></textarea></div>
+<div class="field"><label>What would make you use this every week?</label><textarea id="wish" placeholder="A feature, reminder, layout change, or simpler instruction..."></textarea></div>
+<div class="field"><label>Anything else Rochelle should know?</label><textarea id="other" placeholder="Your honest feedback is useful."></textarea></div>
+<div class="actions"><button class="primary" id="saveFeedback">Save Feedback</button><button class="secondary" id="downloadFeedback">Download Feedback File</button><button class="secondary" id="copyFeedback">Copy Feedback</button></div>
+<div class="saved" id="savedMessage">Your feedback is saved in this browser.</div>
+<p class="privacy">Privacy note: this page does not send feedback automatically. Download or copy the feedback and share it directly with Rochelle.</p>
+</section>
+<div class="footer">Creator Command Center · Designed by Rochelle Mickels</div>
+</main>
+<script>
+const KEY='ccc_tester_feedback_v1';
+const ids=['testerName','testerBrand','testerPlatform','techLevel','easiest','stuck','wish','other'];
+function collect(){const data={};ids.forEach(id=>data[id]=document.getElementById(id).value);data.tasks={};document.querySelectorAll('#tasks input').forEach(x=>data.tasks[x.dataset.key]=x.checked);data.ease=document.querySelector('input[name="ease"]:checked')?.value||'';data.savedAt=new Date().toISOString();return data}
+function restore(){let data={};try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}ids.forEach(id=>{if(data[id]!==undefined)document.getElementById(id).value=data[id]});document.querySelectorAll('#tasks input').forEach(x=>x.checked=!!data.tasks?.[x.dataset.key]);if(data.ease){const r=document.querySelector(`input[name="ease"][value="${data.ease}"]`);if(r)r.checked=true}}
+function save(show=true){localStorage.setItem(KEY,JSON.stringify(collect()));if(show){const m=document.getElementById('savedMessage');m.classList.add('show');setTimeout(()=>m.classList.remove('show'),2600)}}
+function summary(){const d=collect();const done=Object.entries(d.tasks).filter(([,v])=>v).map(([k])=>k).join(', ')||'None';return `Creator Command Center Tester Feedback\n\nTester: ${d.testerName||'Not provided'}\nBrand: ${d.testerBrand||'Not provided'}\nPlatform: ${d.testerPlatform||'Not provided'}\nTech comfort: ${d.techLevel||'Not provided'}\nTasks completed: ${done}\nEase rating: ${d.ease||'Not rated'}/5\n\nEasiest:\n${d.easiest||'—'}\n\nStuck or unsure:\n${d.stuck||'—'}\n\nWould make me use it weekly:\n${d.wish||'—'}\n\nAnything else:\n${d.other||'—'}\n\nSaved: ${new Date(d.savedAt).toLocaleString()}`}
+document.getElementById('saveFeedback').onclick=()=>save(true);
+document.getElementById('downloadFeedback').onclick=()=>{save(false);const blob=new Blob([summary()],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`creator-command-center-feedback-${(document.getElementById('testerName').value||'tester').toLowerCase().replace(/[^a-z0-9]+/g,'-')}.txt`;a.click();URL.revokeObjectURL(a.href)};
+document.getElementById('copyFeedback').onclick=async()=>{save(false);try{await navigator.clipboard.writeText(summary());alert('Feedback copied. You can paste it into a text or email to Rochelle.')}catch(e){alert('Copy was blocked by this browser. Please use Download Feedback File instead.')}};
+document.getElementById('clearAll').onclick=()=>{if(confirm('Clear this tester feedback and start fresh?')){localStorage.removeItem(KEY);location.reload()}};
+document.querySelectorAll('input,textarea,select').forEach(el=>el.addEventListener('change',()=>save(false)));
+restore();
+</script>
+</body>
+</html>
