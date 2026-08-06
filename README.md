@@ -1,6 +1,6 @@
 # Creator Command Center
 
-A calm, browser-based planning dashboard designed by Rochelle Mickels for creators building their brand, content, projects, and income streams.
+A calm, browser-based planning dashboard designed by Rochelle Mickels for creators building their brand, content, projects, education, and income streams.
 
 ## Live pages
 
@@ -16,6 +16,7 @@ A calm, browser-based planning dashboard designed by Rochelle Mickels for creato
 - Morning Brain Dump and archive
 - Future Projects with platform tags
 - Content idea bank and weekly content calendar
+- Education and course tracker with resource links, target dates, progress, and next actions
 - Revenue tracking
 - Weekly reflection and wins
 - Local browser saving
@@ -28,4 +29,4 @@ Dashboard entries are stored in the user's own browser with `localStorage`. Pers
 
 ## Hosting
 
-This project is designed for free static hosting with GitHub Pages from the `main` branch and repository root.
+This project is designed for free static hosting with GitHub Pages from the `main` branch and repository root. The included GitHub Actions workflow publishes the site when Pages is configured to use **GitHub Actions** as its source.
